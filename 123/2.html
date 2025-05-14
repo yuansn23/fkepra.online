@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>日本株式投資コミュニティ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A365D',
+                        secondary: '#FF5A5F',
+                        accent: '#48BB78',
+                        dark: '#111827',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Noto Sans JP', 'sans-serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            }
+            .btn-pulse {
+                animation: pulse 2s infinite;
+            }
+            .btn-shine {
+                position: relative;
+                overflow: hidden;
+            }
+            .btn-shine::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+                transform: rotate(30deg);
+                animation: shine 3s infinite;
+            }
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.7);
+                }
+                70% {
+                    box-shadow: 0 0 0 15px rgba(255, 90, 95, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(255, 90, 95, 0);
+                }
+            }
+            @keyframes shine {
+                0% {
+                    transform: translateX(-100%) rotate(30deg);
+                }
+                100% {
+                    transform: translateX(100%) rotate(30deg);
+                }
+            }
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+            .scroll-reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-light">
+    <!-- Fixed Line Icon with Notification -->
+    <div class="fixed right-6 top-1/2 -translate-y-1/2 z-50">
+        <a href="javascript:void(0)" onclick="openlink()" class="relative flex items-center justify-center w-14 h-14 bg-[#00B900] rounded-full shadow-lg hover:scale-110 transition-all duration-300">
+            <i class="fa-brands fa-line text-white text-2xl"></i>
+            <span class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">5</span>
+        </a>
+    </div>
+
+    <!-- Hero Section with Pain Points -->
+    <section class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary to-dark text-white">
+        <div class="absolute inset-0 bg-[url('https://www.jacmsotck.online/415rirenshen/15.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
+            <div class="max-w-3xl mx-auto scroll-reveal">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">
+                    日本最大の株式投資コミュニティへようこそ！
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-200 mb-8">
+                    ここでは、他の投資家と市場の見方や投資経験を共有し、市場動向を分析し、投資心得を交換することができます。
+                </p>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-8 border border-white/20">
+                    <h3 class="text-xl font-bold mb-4 text-secondary">あなたが抱える投資の課題</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-exclamation-circle text-secondary mt-1 mr-3"></i>
+                            <span>情報入手が遅れ、最適な投資タイミングを逃す</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-exclamation-circle text-secondary mt-1 mr-3"></i>
+                            <span>真偽の分からない情報に惑わされ、誤った投資判断をする</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-exclamation-circle text-secondary mt-1 mr-3"></i>
+                            <span>専門的な分析ツールやデータが不足し、的確な判断ができない</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-exclamation-circle text-secondary mt-1 mr-3"></i>
+                            <span>市場動向を追跡できず、マクロ経済や政策の変化に対応できない</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-exclamation-circle text-secondary mt-1 mr-3"></i>
+                            <span>情報を独立して分析する能力が不足し、盲目に追従する</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <button onclick="openlink()" class="btn-shine btn-pulse bg-secondary hover:bg-red-600 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                        <i class="fa-brands fa-line mr-2"></i> LINEで接続する
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-light to-transparent"></div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <img src="https://www.jacmsotck.online/415rirenshen/15.jpg" alt="馬渕 磨理子" class="rounded-xl shadow-xl w-full max-w-md mx-auto">
+                </div>
+                <div class="scroll-reveal" style="transition-delay: 0.2s">
+                    <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-primary mb-6">馬渕 磨理子からの招待</h2>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        皆さんこんにちは、馬渕 磨理子です。日本株式市場の投資機会について、Lineを通じて一緒に議論したいと思います。私は定期的に日本株式市場の分析、投資戦略、そして市場から学んだ経験を共有します。
+                    </p>
+                    <p class="text-gray-700 mb-8 text-lg">
+                        大切なのは、皆さんからも学びたいということです。皆さんの投資スタイルや考え方を知り、一緒に成長し、投資スキルを向上させましょう。
+                    </p>
+                    <button onclick="openlink()" class="bg-secondary hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                        <i class="fa-brands fa-line mr-2"></i> LINEで接続する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-4">Lineでの特典</h2>
+                <p class="text-gray-300 text-lg">私のLineに接続すると、次の特典をお楽しみいただけます。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 card-hover scroll-reveal">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-accent mb-5">
+                        <i class="fa-solid fa-newspaper text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">市場情報速報</h3>
+                    <p class="text-gray-300">
+                        日本株式市場の重要な情報や業界動向を1日10件以上まとめて配信し、効率的に市場のパルスを把握できます。
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 card-hover scroll-reveal" style="transition-delay: 0.2s">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-accent mb-5">
+                        <i class="fa-solid fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">投資家との交流</h3>
+                    <p class="text-gray-300">
+                        200人以上の日本株式愛好家と経験を共有し、意見を交換しましょう。平均して1日1000件以上の活発な議論が行われています。
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 card-hover scroll-reveal" style="transition-delay: 0.4s">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-accent mb-5">
+                        <i class="fa-solid fa-book text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">体系的学習リソース</h3>
+                    <p class="text-gray-300">
+                        技術分析やファンダメンタルズ研究など、10以上の学習資料パッケージを無料で入手でき、包括的な知識体系を構築できます。
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 card-hover scroll-reveal" style="transition-delay: 0.6s">
+                    <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-accent mb-5">
+                        <i class="fa-solid fa-comments text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ホットトピック討論</h3>
+                    <p class="text-gray-300">
+                        週に少なくとも3回のホットトピック討論、質疑応答、ケース分析などのイベントを開催し、市場のホットな話題を一緒に分析し、認識レベルを向上させます。
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 scroll-reveal">
+                <button onclick="openlink()" class="btn-shine btn-pulse bg-secondary hover:bg-red-600 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                    <i class="fa-brands fa-line mr-2"></i> 今すぐLINEで接続
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-primary mb-4">メンバーの声</h2>
+                <p class="text-gray-600 text-lg">皆さんの投資経験を共有しています。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/user1/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-primary">佐藤 健</h4>
+                            <p class="text-gray-500 text-sm">3ヶ月メンバー</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "このコミュニティに参加してから、情報入手のタイミングが大幅に改善されました。特に市場速報は非常に役立っています。"
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover scroll-reveal" style="transition-delay: 0.2s">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/user2/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-primary">鈴木 恵子</h4>
+                            <p class="text-gray-500 text-sm">6ヶ月メンバー</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "他の投資家との交流が非常に刺激的です。異なる視点からの分析やアドバイスを得られ、投資判断が格段に楽になりました。"
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover scroll-reveal" style="transition-delay: 0.4s">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/user3/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-primary">高橋 一郎</h4>
+                            <p class="text-gray-500 text-sm">1年メンバー</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "提供される学習資料は非常に充実しており、投資の基礎から上級者まで幅広い内容がカバーされています。自分の投資スキルが向上したことを実感しています。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclosure Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-xl shadow-lg p-8 scroll-reveal">
+                <h3 class="text-xl font-bold text-primary mb-4">重要な開示事項</h3>
+                <p class="text-gray-600 mb-4">
+                    本ウェブサイトは、日本の金融株式に関心のある投資家に学習と交流の場を提供することを目的としています。
+                </p>
+                <p class="text-gray-600 mb-4">
+                    コミュニティ内のメンバーが共有する市場の見方、投資経験、および関連情報は、参考および議論のためのものであり、いかなる形でも投資助言または保証を構成するものではありません。
+                </p>
+                <p class="text-gray-600">
+                    この交流コミュニティは純粋に情報共有の性質のものであり、いかなる形でも理財または投資助言を構成するものではありません。投資に関する決定は、十分な調査と自己責任の下で行ってください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed Bottom Button -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4 z-40">
+        <button onclick="openlink()" class="w-full py-4 px-6 bg-secondary text-white font-bold rounded-full shadow-2xl btn-pulse text-lg whitespace-nowrap">
+            <i class="fa-brands fa-line mr-2"></i> 今すぐLINEで投資コミュニティに参加
+        </button>
+    </div>
+
+    <script>
+        // Function to open Line link
+        function openlink() {
+            // Replace with your actual Line link
+            window.location.href = 'https://line.me/';
+        }
+
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            
+            const elementInView = (el, percentageScroll = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementHeight = el.getBoundingClientRect().height;
+                
+                return (
+                    elementTop <= 
+                    ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('active');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('active');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 80)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            
+            // Initialize on page load
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
+    
